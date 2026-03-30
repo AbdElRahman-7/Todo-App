@@ -1,4 +1,4 @@
-import type { TaskCardProps } from "../../types/todo";
+import type { TaskCardProps } from "../../types/Todo";
 
 const TaskCard = ({ task }: TaskCardProps) => {
 if (!task) return null;

@@ -1,31 +1,16 @@
-import TaskCard from "../TaskCard/TaskCard";
-import type { Task } from "../../types/todo";
+import './column.scss';
+import React from 'react';
+import TaskList from '../TaskList/TaskList';
+interface ColumnProps {
+  status: "todo" | "in-progress" | "done";
+}
 
-type ColumnProps = {
-  title: string;
-};
-
-const dummyTasks: Task[] = [
-  {
-    id: "1",
-    title: "Learn React",
-    description: "Study hooks",
-    status: "todo",
-    labels: ["frontend"],
-    checklist: [
-      { text: "useState", done: true },
-      { text: "useEffect", done: false },
-    ],
-  },
-];
-
-const Column = ({ title }: ColumnProps) => {
+const Column: React.FC<ColumnProps> = ({ status }) => {
   return (
-    <div>
-      <h2>{title}</h2>
-      {dummyTasks.map((task) => 
-        <TaskCard key={task.id} task={task} />
-      )}
+    <div className="column"
+    >
+      <h2>{status.toUpperCase()}</h2>
+      <TaskList status={status} />
     </div>
   );
 };
