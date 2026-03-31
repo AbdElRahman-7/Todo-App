@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { useTaskContext } from "../../context/useTaskContext";
 
 const AddTask = () => {
-    const { addTask } = useTaskContext();
+  const { addTask } = useTaskContext();
   const formik = useFormik({
     initialValues: {
       title: "",

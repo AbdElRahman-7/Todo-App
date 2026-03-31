@@ -4,7 +4,7 @@ interface TaskListProps {
   status: "todo" | "in-progress" | "done";
 }
 
-const TaskList: React.FC<TaskListProps> = ({ status }) => {
+const TaskList = ({ status }: TaskListProps) => {
   const { tasks } = useTaskContext();
   const filteredTasks = tasks.filter((task) => task.status === status);
 
