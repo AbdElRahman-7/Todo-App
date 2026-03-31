@@ -1,12 +1,14 @@
 import Column from "../Column/Column";
+import AddTask from "../AddTask/AddTask";
 
 const Board = () => {
   return (
     <>
       <div className="board">
-        <Column title="Todo" />
-        <Column title="In Progress" />
-        <Column title="Done" />
+        <AddTask />
+        <Column status="todo" />
+        <Column status="in-progress" />
+        <Column status="done" />
       </div>
     </>
   );

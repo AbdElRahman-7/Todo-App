@@ -1,31 +1,34 @@
-import TaskCard from "../TaskCard/TaskCard";
-import type { Task } from "../../types/todo";
+import "./column.scss";
+import TaskList from "../TaskList/TaskList";
+import { useDrop } from "react-dnd";
+import { useTaskContext } from "../../context/useTaskContext";
+import type { Task } from "../../types/Todo";
+import { useEffect, useRef } from "react";
+interface ColumnProps {
+  status: "todo" | "in-progress" | "done";
+}
 
-type ColumnProps = {
-  title: string;
-};
+const Column = ({ status }: ColumnProps) => {
+  const { updateTask } = useTaskContext();
+  const ref = useRef<HTMLDivElement>(null);
 
-const dummyTasks: Task[] = [
-  {
-    id: "1",
-    title: "Learn React",
-    description: "Study hooks",
-    status: "todo",
-    labels: ["frontend"],
-    checklist: [
-      { text: "useState", done: true },
-      { text: "useEffect", done: false },
-    ],
-  },
-];
+  const [, drop] = useDrop({
+    accept: "TASK",
+    drop: (item: Task) => {
+      updateTask({ ...item, status });
+    },
+  });
 
-const Column = ({ title }: ColumnProps) => {
+  useEffect(() => {
+    if (ref.current) {
+      drop(ref.current);
+    }
+  }, [drop]);
+
   return (
-    <div>
-      <h2>{title}</h2>
-      {dummyTasks.map((task) => 
-        <TaskCard key={task.id} task={task} />
-      )}
+    <div className="column" ref={ref}>
+      <h2>{status.toUpperCase()}</h2>
+      <TaskList status={status} />
     </div>
   );
 };
