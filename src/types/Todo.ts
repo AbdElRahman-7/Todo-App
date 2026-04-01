@@ -4,11 +4,7 @@ export type Task = {
   description?: string;
   status: "todo" | "in-progress" | "done";
   labels: string[];
-  checklist: {
-    id: string;
-    text: string;
-    done: boolean;
-  }[];
+  checklist: { id: string; text: string; done: boolean;}[];
 };
 export type ColumnProps = {
   title: string;

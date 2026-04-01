@@ -1,0 +1,59 @@
+.board {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  height: 100vh;
+  box-sizing: border-box;
+}
+.board-header {
+  width: 350px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  .board-controls {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+
+    .search-input {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
+
+      &:focus {
+        border-color: #4a90e2;
+      }
+    }
+
+    .filter-select {
+      width: 120px;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+
+      &:focus {
+        border-color: #4a90e2;
+      }
+    }
+  }
+}
+
+.boardContent {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+  flex: 1; 
+  align-items: flex-start;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
+}
+.boardContent > * {
+  flex: 1;
+  min-width: 0;
+}
