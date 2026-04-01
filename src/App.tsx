@@ -1,15 +1,17 @@
-import './App.css'
-import Board from './components/Board/Board';
+import Board from "./components/Board/Board";
+import "./styles/main.scss";
+
 function App() {
 
+
   return (
-      <div style={{ padding: "20px" }}>
-        <h1>TODO App</h1>
-        <div style={{ display: "flex", gap: "20px" }}>
-          <Board />
-        </div>
+    <div className="app container">
+      <h1 className="app-title">TODO App</h1>
+      <div className="app-content">
+        <Board />
       </div>
+    </div>
   );
 }
 
-export default App
+export default App;

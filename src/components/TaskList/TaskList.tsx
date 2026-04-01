@@ -1,17 +1,17 @@
-import { useTaskContext } from "../../context/useTaskContext";
 import TaskComponent from "../Task/Task";
+import type { Task } from "../../types/Todo";
 interface TaskListProps {
-  status: "todo" | "in-progress" | "done";
+  tasks: Task[];
+  updateTask: (task: Task) => void;
 }
 
-const TaskList = ({ status }: TaskListProps) => {
-  const { tasks } = useTaskContext();
-  const filteredTasks = tasks.filter((task) => task.status === status);
+const TaskList = ({ tasks, updateTask }: TaskListProps) => {
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-      {filteredTasks.map((task) => (
-        <TaskComponent key={task.id} task={task} />
+    <div className="taskList">
+      
+      {tasks.map((task) => (
+        <TaskComponent key={task.id} task={task} updateTask={updateTask} />
       ))}
     </div>
   );
