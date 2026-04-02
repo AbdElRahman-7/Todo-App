@@ -1,9 +1,18 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
 .board {
   display: flex;
   gap: 20px;
   padding: 20px;
-  height: 100vh;
+  min-height: 100vh;
   box-sizing: border-box;
+
+  @include respond-to('lg') {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
 }
 .board-header {
   width: 350px;
@@ -11,35 +20,71 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  animation: slideInLeft 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  @include respond-to('lg') {
+    width: 100%;
+  }
 
   .board-controls {
     display: flex;
     gap: 10px;
     width: 100%;
 
+    .search-input, .filter-select {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
     .search-input {
       flex: 1;
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      padding: 10px 14px;
+      border-radius: 12px;
       outline: none;
+      transition: all 0.3s ease;
+      min-width: 0; // Fix potential container overflows
 
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
       &:focus {
-        border-color: #4a90e2;
+        border-color: #a78bfa;
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 12px rgba(167, 139, 250, 0.4);
       }
     }
 
     .filter-select {
-      width: 120px;
-      padding: 8px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      width: 130px;
+      padding: 10px;
+      border-radius: 12px;
+      outline: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
 
       &:focus {
-        border-color: #4a90e2;
+        border-color: #a78bfa;
+        background: rgba(255, 255, 255, 0.15);
+      }
+      option {
+        background: #1e1b4b;
+        color: white;
       }
     }
   }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInStaggered {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .boardContent {
@@ -48,9 +93,11 @@
   overflow: hidden;
   flex: 1; 
   align-items: flex-start;
+  animation: fadeInStaggered 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) ease-out;
 
-  @media (max-width: 1024px) {
+  @include respond-to('lg') {
     flex-direction: column;
+    overflow: visible;
   }
 }
 .boardContent > * {

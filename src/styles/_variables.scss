@@ -1,14 +1,33 @@
-$bg-color: #2092a1;
-$text-color: #111827;
-$secondary-text-color: #f9f9f9;
-$border-radius: 12px;
-$shadow: 0 4px 12px rgba(0,0,0,0.08);
+// COLORS
+$color-primary: #8b5cf6;
+$color-primary-dark: #7c3aed;
 
+$color-success: #10b981;
+$color-danger: #f43f5e;
 
+// For glassmorphism, light text
+$color-text: #ffffff;
+$color-text-light: rgba(255, 255, 255, 0.7);
 
-//labels
-$label-color: #2563EB;
-$bg-label-color: #2563EB;
-//buttons
-$primary-color: #2563EB;
-$secondary-color: #111827;
+$color-border: rgba(255, 255, 255, 0.15);
+$color-surface: rgba(255, 255, 255, 0.08);
+
+//  LABELS
+$color-label: #c4b5fd;
+$color-label-bg: rgba(139, 92, 246, 0.2);
+
+//  UI
+$radius: 16px;
+$shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3);
+
+$space-xs: 4px;
+$space-sm: 8px;
+$space-md: 12px;
+$space-lg: 16px;
+$space-xl: 24px;
+
+// BREAKPOINTS
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1200px;

@@ -95,6 +95,11 @@ const TaskComponent = ({ task, updateTask }: TaskProps) => {
             type="text"
             value={newCheck}
             onChange={(e) => setNewCheck(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                addChecklistItem();
+              }
+            }}
             placeholder="New checklist item"
           />
           <button onClick={addChecklistItem}>Add</button>
