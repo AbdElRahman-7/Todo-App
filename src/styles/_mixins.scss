@@ -1,6 +1,36 @@
-@mixin flex-center($direction: row, $justify: center, $align: center) {
+@use "./variables.scss" as *;
+
+@mixin card($bg: $color-surface, $radius: $radius, $shadow: $shadow) {
+  background: $bg;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  padding: $space-md;
+  margin: 5px;
+  gap: 5px;
+}
+
+@mixin flex-center($dir: row, $justify: center, $align: center) {
   display: flex;
-  flex-direction: $direction;
+  flex-direction: $dir;
   justify-content: $justify;
   align-items: $align;
 }
+
+@mixin transition {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (max-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == 'md' {
+    @media (max-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == 'lg' {
+    @media (max-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == 'xl' {
+    @media (max-width: $breakpoint-xl) { @content; }
+  }
+}

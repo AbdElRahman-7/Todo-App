@@ -12,7 +12,8 @@ interface ColumnProps {
 
 const Column = ({ status, search = "", filterLabel = "" }: ColumnProps) => {
   const { tasks, updateTask } = useTaskContext();
-    const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   
   const ref = useRef<HTMLDivElement>(null);
@@ -44,17 +45,33 @@ const Column = ({ status, search = "", filterLabel = "" }: ColumnProps) => {
 
   return (
     <div className="column" ref={ref}>
-      <h2 className="column__title">{status.toUpperCase()}</h2>
-      <button className="add-task-btn" onClick={() => setShowForm(!showForm)}>
-        +
-      </button>
-      {showForm && (
-        <AddTask   isGeneral={false} status={status} closeForm={() => setShowForm(false)} />
-      )}
-
-      <div className="column__tasks">
-        <TaskList tasks={filteredTasks} updateTask={updateTask} />
+      <div className="column-header">
+        <h2 className="column__title">{status.toUpperCase()}</h2>
+        <div className="column-actions">
+          <button 
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            className="toggle-btn"
+            disabled={filteredTasks.length === 0}
+          >
+            {isCollapsed ? "Show" : "Hide"} All
+          </button>
+          <button className="add-task-btn" onClick={() => setShowForm(!showForm)}>
+            +
+          </button>
+        </div>
       </div>
+      
+      {!isCollapsed && (
+        <>
+          {showForm && (
+            <AddTask   isGeneral={false} status={status} closeForm={() => setShowForm(false)} />
+          )}
+
+          <div className="column__tasks">
+            <TaskList tasks={filteredTasks} updateTask={updateTask} />
+          </div>
+        </>
+      )}
     </div>
   );
 };

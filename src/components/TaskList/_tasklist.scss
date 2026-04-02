@@ -1,71 +1,56 @@
-:root {
-  --bg-color: variables.$bg-color;
-  --text-color: variables.$text-color;
-  --border-radius: variables.$border-radius;
-  --secondary-color: variables.$secondary-text-color;
-  --shadow: variables.$shadow;
-  //buttons
-  --primary-color: variables.$primary-color;
-  --secondary-color: variables.$secondary-color;
-  //labels
-  --label-color: variables.$label-color;
-  --bg-label-color: variables.$bg-label-color;
+@use "../../styles/mixins.scss" as *;
+@use "../../styles/variables.scss" as *;
 
-
+@keyframes taskExit {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-15px) scale(0.95); }
 }
 
 .task-list {
+  @include card(rgba(255, 255, 255, 0.05));
+  width: 100%;
+  min-height: 200px;
+  max-height: 500px; 
+  overflow-y: auto;
+  padding: $space-md;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  list-style-type: none;
+  gap: $space-sm;
 
-  .task {
-    background: var(--secondary-color);
-    padding: 12px;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
-    cursor: grab;
-    
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
 
-    &__title {
-      font-weight: 500;
-      font-size: 16px;
-      color: var(--text-color);
-      word-break: break-word; 
-    }
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-primary;
+    border-radius: 3px;
+  }
 
-    &__labels {
-      display: flex;
-      max-width: 40px;
-      gap: 6px;
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+  }
 
-      .label {
-        background: var(--bg-label-color);
-        color: var(--label-color);
-        padding: 2px 6px;
-        font-size: 12px;
-        border-radius: 6px;
-      }
-    }
-
-    &__actions {
-      display: flex;
-      gap: 6px;
-
-      .button {
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        color: #6B7280;
-        font-size: 14px;
-
-        &:hover {
-          color: var(--secondary-color) ;
-        }
-      }
-    }
-
-    
+  .task-card {
+    animation: taskEnter 0.3s ease;
   }
 }
+/*
+.task {
+  background: var(--surface-color);
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  cursor: grab;
+
+  transition: all 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+  }
+
+  &:active {
+    transform: scale(0.97);
+    cursor: grabbing;
+  }
+}*/

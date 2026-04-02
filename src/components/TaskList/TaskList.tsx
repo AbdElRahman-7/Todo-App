@@ -11,7 +11,7 @@ const TaskList = ({ tasks, updateTask }: TaskListProps) => {
     <div className="taskList">
       
       {tasks.map((task) => (
-        <TaskComponent key={task.id} task={task} updateTask={updateTask} />
+        <TaskComponent  key={task.id} task={task} updateTask={updateTask } />
       ))}
     </div>
   );
